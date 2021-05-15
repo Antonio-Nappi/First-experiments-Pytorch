@@ -43,7 +43,7 @@ class WineDatasetTransform(Dataset):
 class ToTensor:
     def __call__(self, sample):
         inputs, targets = sample
-        return torch.from_numpy(inputs), torch.from_numpy(targets)
+        return torch.from_numpy(np.asarray(inputs)), torch.from_numpy(np.asarray(targets))
 
 
 class MulTransform:
@@ -55,7 +55,7 @@ class MulTransform:
 
 
 if __name__ == "__main__":
-    transform = False
+    transform = True
     # print to check if everything is ok
     if not transform:
         dataset = WineDataset()
@@ -83,7 +83,7 @@ if __name__ == "__main__":
         first_data = dataset[0]
         features, labels = first_data
         print(features, labels)
-        composed = torchvision.transforms.Compose(ToTensor(), MulTransform(2))
+        composed = torchvision.transforms.Compose([ToTensor(), MulTransform(2)])
         dataset = WineDatasetTransform(transform=composed)
         first_data = dataset[0]
         features, labels = first_data
