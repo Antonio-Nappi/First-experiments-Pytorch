@@ -25,7 +25,7 @@ class NeuralNet(nn.Module):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # hyperparameters
-input_size = 28 * 28  # 784
+input_size = 28 * 28  # each image is a grayscale image of 28*28 pixels
 hidden_size = 20
 num_classes = 10
 num_epochs = 100
